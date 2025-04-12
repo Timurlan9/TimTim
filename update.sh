@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Запрос нового значения для rpc_url / RPC_URL
-read -p "Введите новую rpc: " new_rpc
+new_rpc := https://base-mainnet.public.blastapi.io
 
 # Файлы для изменения
 json_files=(
