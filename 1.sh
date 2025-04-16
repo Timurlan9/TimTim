@@ -1,17 +1,30 @@
-import os
+name: Deploy RL-Swarm Modal Login
 
-def check_outputs(log_path="training_output.log", expected_keys=["eval_loss", "eval_accuracy"]):
-    if not os.path.exists(log_path):
-        print(f"[❌] Log file {log_path} not found.")
-        return False
+on:
+  push:
+    branches: [ main ]  # Запускать при пуше в main
+  workflow_dispatch:    # Разрешить ручной запуск
 
-    with open(log_path, "r") as f:
-        content = f.read()
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-    for key in expected_keys:
-        if key not in content:
-            print(f"[⚠️] Missing key: {key}")
-            return False
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'  # Или ваша версия Node.js
 
-    print("[✅] All expected keys found in logs.")
-    return True
+    - name: Install Yarn
+      run: npm install -g yarn
+
+    - name: Run deployment commands
+      run: |
+        cd /root/rl-swarm/modal-login
+        yarn up
+        yarn install
+        yarn build
+        yarn start
