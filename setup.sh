@@ -21,7 +21,7 @@ yarn add encoding
 yarn build
 
 yarn add pino-pretty
-
+yarn up @account-kit/infra @account-kit/core @account-kit/react
 echo "✅ Зависимости установлены. Финальная сборка..."
 yarn build
 corepack yarn start
