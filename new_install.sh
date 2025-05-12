@@ -70,7 +70,7 @@ echo "Node.js версия  $NODE_VERSION. Продолжаем..."
 #preinstall yarn, so its properly registered in ~/profile
 if ! command -v yarn; then
       echo "Yarn не установлен. Устанавливаем..."
-      curl -o- -L https://yarnpkg.com/install.sh 2>/dev/null | sh 
+      curl -o- -L https://yarnpkg.com/install.sh  | sh 
       echo 'export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"' >> ~/.profile
       source ~/.profile
 fi
@@ -182,11 +182,11 @@ done
     cd modal-login
 
     echo "Запускаем yarn install (ориентировочное время 2-5 мин)"
-    yarn install &>/dev/null
-    yarn up &>/dev/null
-    yarn add next@latest react react-dom &>/dev/null
-    yarn add viem@latest &>/dev/null
-    yarn dev > /dev/null 2>&1 & # Run in background and suppress output
+    yarn install 
+    yarn up 
+    yarn add next@latest react react-dom 
+    yarn add viem@latest 
+    yarn dev 
     echo "Установка завершена"
     echo "-----------------------------------------------------------------------------"
     echo ""
