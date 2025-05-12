@@ -5,9 +5,9 @@ echo "--------------------------------------------------------------------------
 
 echo "Устанавливаем софт (временной диапазон ожидания ~5-20 min.)"
 echo "-----------------------------------------------------------------------------"
-curl -s https://raw.githubusercontent.com/DOUBLE-TOP/tools/main/main.sh | bash &>/dev/null
-curl -s https://raw.githubusercontent.com/DOUBLE-TOP/tools/main/ufw.sh | bash &>/dev/null
-apt-get install python3 python3-pip python3-venv python3-dev -y &>/dev/null
+curl -s https://raw.githubusercontent.com/DOUBLE-TOP/tools/main/main.sh | bash 
+curl -s https://raw.githubusercontent.com/DOUBLE-TOP/tools/main/ufw.sh | bash 
+apt-get install python3 python3-pip python3-venv python3-dev -y 
 
 # Get the current Python version (major.minor format)
 current_version=$(python3 --version 2>&1 | awk '{print $2}')
@@ -15,13 +15,13 @@ required_version="3.12"
 
 if [[ "$(echo -e "$current_version\n$required_version" | sort -V | head -n1)" != "$required_version" ]]; then
     echo "Python версия ниже за 3.12. Устанавливаю Python 3.12..."
-    sudo apt install -y software-properties-common &>/dev/null
-    sudo add-apt-repository -y ppa:deadsnakes/ppa &>/dev/null
-    sudo apt update &>/dev/null
-    sudo apt install -y python3.12 python3.12-venv python3.12-dev &>/dev/null
+    sudo apt install -y software-properties-common 
+    sudo add-apt-repository -y ppa:deadsnakes/ppa
+    sudo apt update 
+    sudo apt install -y python3.12 python3.12-venv python3.12-dev 
     sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.12 12
     #sudo update-alternatives --set python3 /usr/bin/python3.12
-    curl -sS https://bootstrap.pypa.io/get-pip.py | sudo python3.12 &>/dev/null
+    curl -sS https://bootstrap.pypa.io/get-pip.py | sudo python3.12 
 fi
 
 SERVICE_NAME="gensyn.service"
@@ -58,8 +58,8 @@ NODE_VERSION=$(node -v 2>/dev/null | cut -d 'v' -f 2)
 # Check if the version is lower than 20.18.0
 if [[ -n "$NODE_VERSION" && $(echo -e "$NODE_VERSION\n20.18.0" | sort -V | head -n1) == "$NODE_VERSION" ]]; then
     echo "Версия NodeJS ниже 20.18.0 ($NODE_VERSION). Обновляем..."
-    curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - >/dev/null 2>&1
-    sudo apt install -y nodejs >/dev/null 2>&1
+    curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - 
+    sudo apt install -y nodejs 
     echo "NodeJS обновлена: "
     node -v
 fi
@@ -68,9 +68,9 @@ NODE_VERSION=$(node -v 2>/dev/null | cut -d 'v' -f 2)
 echo "Node.js версия  $NODE_VERSION. Продолжаем..."
 
 #preinstall yarn, so its properly registered in ~/profile
-if ! command -v yarn >/dev/null 2>&1; then
+if ! command -v yarn; then
       echo "Yarn не установлен. Устанавливаем..."
-      curl -o- -L https://yarnpkg.com/install.sh 2>/dev/null | sh >/dev/null 2>&1
+      curl -o- -L https://yarnpkg.com/install.sh 2>/dev/null | sh 
       echo 'export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"' >> ~/.profile
       source ~/.profile
 fi
