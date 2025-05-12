@@ -183,7 +183,7 @@ done
 
     echo "Запускаем yarn install (ориентировочное время 2-5 мин)"
     yarn install 
-    yarn up 
+    yarn upgrade
     yarn add next@latest react react-dom 
     yarn add viem@latest 
     yarn dev 
