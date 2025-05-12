@@ -182,6 +182,7 @@ done
     cd modal-login
 
     echo "Запускаем yarn install (ориентировочное время 2-5 мин)"
+    touch yarn.lock
     yarn install 
     yarn upgrade
     yarn add next@latest react react-dom 
